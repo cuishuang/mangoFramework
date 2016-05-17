@@ -1,5 +1,7 @@
 <?php
 
+namespace app\controllers;
+
 /**
 * 基础控制器
 */
