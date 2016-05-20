@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\models\db;
+use app\config\Config;
 /**
 * 前台Controller
 */
@@ -43,17 +44,73 @@ class HomeController
 
 		//删除操作
 
-		$sqlDelete = "DELETE FROM `t1` WHERE id=10";
+		// $sqlDelete = "DELETE FROM `t1` WHERE id=10";
 
-		$res4 = $db->delete($sqlDelete);
+		// $res4 = $db->delete($sqlDelete);
 
-		var_dump($res4);
+		// var_dump($res4);
+
+
+
 
 	}
 
+
+	public function transaction()
+	{
+		$db = db::getIntance();
+		$tsk = $db::$pdo;
+		//事务测试
+		try{
+			$tsk->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+			$tsk->beginTransaction();
+
+			$sql = "INSERT `t1`(name,create_time) VALUES('bbb',NOW())";
+			$db->execute($sql);
+
+			$sqlUpdate = "INSERT `t1`(title,create_time) VALUES('111',NOW())";
+			$db->execute($sqlUpdate);
+
+			$tsk->commit();
+
+		}catch (Exception $e) {
+			$tsk->rollBack();
+			echo $e->getMessage();
+			
+		}		
+
+
+		
+
+
+
+
+
+		// try {
+			
+		// 	$sql = "DROP TABLE t2";
+		// 	$db->execute($sql);
+
+		// 	$sqlUpdate = "UPDATE `t2` SET title = '王大锤' WHERE id=:id;";
+		// 	$db->update($sqlUpdate,array(':id'=>'2'));
+
+		// 	$tsk->commit();
+
+		// } catch (Exception $e) {
+		// 	echo $e->getMessage();
+		// 	$tsk->rollBack();
+		// }		
+
+	}
+
+
 	public function test()
 	{
-		echo "just test";
+		// echo "just test";
+
+		$obj = new Config;
+
+		var_dump($obj['one']);
 	}
 
 }

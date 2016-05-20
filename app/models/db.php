@@ -2,11 +2,14 @@
 
 namespace app\models;
 
+//use app\config\DbConfig;
+
 /**
  * 数据库操作类
- * 待添加 1.事务
+ * 待添加 1.事务 已完成 2.配置文件
  * @author roy.cai
  */
+
 class db
 {
 	
@@ -14,7 +17,11 @@ class db
 	public static $pdo;
 
 	private function __construct(){
-		$this->pdo();
+
+		//数据库设置数组
+
+
+		$this->pdo($configs);
 		self::$pdo->exec("SET names utf8");
 		//self::$pdo->setFetchMode(\PDO::FETCH_ASSOC);
 	}
@@ -35,10 +42,11 @@ class db
 		echo "db test";
 	}
 
-	public function pdo()
+	public function pdo($configs)
 	{
 		if(!self::$pdo){
-			self::$pdo = new \PDO('mysql:host=localhost;dbname=test','root','');
+			// self::$pdo = new \PDO('mysql:host=localhost;dbname=test','root','');
+			self::$pdo = new \PDO('mysql:host='.$configs['host'].';dbname='.$configs['dbname'].','.$configs['username'].','.$configs['password'].')';
 		}
 		return self::$pdo;
 	}
@@ -152,6 +160,34 @@ class db
 		}
 	}
 
+	/**
+	 * 执行sql
+	 * @param $sql sql语句
+	 * @param $params 参数数组
+	 * @return 结果集数组
+	 */
+	public function execute($sql,$params=array())
+	{
+		//参数为空直接执行
+		if (empty($params)) {
+			$count = self::$pdo->exec($sql);	
+			return $count;
+		}else{
+			if (is_array($params)) {
+				//参数不为空就使用预处理方式
+				$stmt = self::$pdo->prepare($sql);
+				$stmt->setFetchMode(\PDO::FETCH_ASSOC);
+				$this->bindParams($stmt,$params);
+				$stmt->execute();
+				return $stmt->rowCount();
+			}
+			echo "参数应为数组";
+			exit;
+		}
+	}
+
+
+
 
 	/**
 	 * 删除记录
@@ -190,6 +226,8 @@ class db
 			$stmt->bindParam($k,$v,\PDO::PARAM_STR);
 		}
 	}
+
+
 
 
 
