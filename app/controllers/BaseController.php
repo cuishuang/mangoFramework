@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\Home;
+namespace app\controllers;
 
 /**
 * 基类

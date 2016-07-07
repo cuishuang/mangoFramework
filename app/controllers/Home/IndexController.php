@@ -2,6 +2,8 @@
 
 namespace app\controllers\Home;
 
+use app\controllers\BaseController;
+
 /**
 * 前台首页类
 */
