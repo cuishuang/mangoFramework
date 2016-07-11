@@ -23,6 +23,13 @@ class ComposerStaticInite5df004c13d933a704a0d118672dd0af
     public static $classMap = array (
         'app\\controllers\\BaseController' => __DIR__ . '/../..' . '/app/controllers/BaseController.php',
         'app\\controllers\\Home\\IndexController' => __DIR__ . '/../..' . '/app/controllers/Home/IndexController.php',
+        'app\\framework\\Api\\ApiBase' => __DIR__ . '/../..' . '/framework/Api/ApiBase.php',
+        'app\\framework\\Api\\ApiContract' => __DIR__ . '/../..' . '/framework/Api/ApiContract.php',
+        'app\\framework\\Config\\Config' => __DIR__ . '/../..' . '/framework/Config/Config.php',
+        'app\\framework\\Database\\Db' => __DIR__ . '/../..' . '/framework/DataBase/Db.php',
+        'app\\framework\\Service\\IoC' => __DIR__ . '/../..' . '/framework/Service/Ioc.php',
+        'app\\framework\\Service\\Mango' => __DIR__ . '/../..' . '/framework/Service/Mango.php',
+        'app\\framework\\Service\\Register' => __DIR__ . '/../..' . '/framework/Service/Register.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -8,4 +8,11 @@ $baseDir = dirname($vendorDir);
 return array(
     'app\\controllers\\BaseController' => $baseDir . '/app/controllers/BaseController.php',
     'app\\controllers\\Home\\IndexController' => $baseDir . '/app/controllers/Home/IndexController.php',
+    'app\\framework\\Api\\ApiBase' => $baseDir . '/framework/Api/ApiBase.php',
+    'app\\framework\\Api\\ApiContract' => $baseDir . '/framework/Api/ApiContract.php',
+    'app\\framework\\Config\\Config' => $baseDir . '/framework/Config/Config.php',
+    'app\\framework\\Database\\Db' => $baseDir . '/framework/DataBase/Db.php',
+    'app\\framework\\Service\\IoC' => $baseDir . '/framework/Service/Ioc.php',
+    'app\\framework\\Service\\Mango' => $baseDir . '/framework/Service/Mango.php',
+    'app\\framework\\Service\\Register' => $baseDir . '/framework/Service/Register.php',
 );

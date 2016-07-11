@@ -6,7 +6,8 @@
 		"classmap": [
 			"app/controllers",
 			"app/models",
-			"config"
+			"config",
+			"framework"	
 		]
 	}
 }

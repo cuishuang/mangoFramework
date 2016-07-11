@@ -16,6 +16,8 @@ Macaw::get('hello', function() {
 //首页
 Macaw::get('index','app\controllers\Home\IndexController@index');
 
+Macaw::post('create','app\controllers\Home\IndexController@create');
+
 
 Macaw::dispatch();
 
